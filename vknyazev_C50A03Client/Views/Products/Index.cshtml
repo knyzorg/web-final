@@ -1,0 +1,60 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Products</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Products" asp-action="Index" method="get">
+    <div class="form-group form-inline p-1">
+        <label for="orderBy" class="control-label p-1">Order by: </label>
+        <select for="orderBy" name="orderBy" class="form-control p-1" asp-items="ViewBag.orderBy"></select>
+        <label for="category" class="control-label p-1">Category: </label>
+        <select for="category" name="category" class="form-control p-1" asp-items="ViewBag.ProdCatId"></select>
+        <button type="submit" class="btn btn-primary m-1">Go</button>
+    </div>
+
+
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].SellPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SellPrice)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
