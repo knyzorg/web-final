@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using vknyazev_C50A03Services.Models;
 
 namespace vknyazev_C50A03Services.Models
 {
@@ -52,5 +53,11 @@ namespace vknyazev_C50A03Services.Models
                     .IsUnicode(false);
             });
         }
+
+        public DbSet<Customer> Customer { get; set; }
+
+        public DbSet<vknyazev_C50A03Services.Models.Order> Order { get; set; }
+
+        public DbSet<vknyazev_C50A03Services.Models.Cart> Cart { get; set; }
     }
 }
