@@ -9,7 +9,7 @@ using vknyazev_C50A03Services.Models;
 
 namespace vknyazev_C50A03Services.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/[controller]")]
     [ApiController]
     public class OrdersController : ControllerBase
     {

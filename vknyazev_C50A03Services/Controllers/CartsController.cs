@@ -9,48 +9,48 @@ using vknyazev_C50A03Services.Models;
 
 namespace vknyazev_C50A03Services.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/[controller]")]
     [ApiController]
-    public class CartsController : ControllerBase
+    public class ShoppingCartsController : ControllerBase
     {
         private readonly vkC50A03DBContext _context;
 
-        public CartsController(vkC50A03DBContext context)
+        public ShoppingCartsController(vkC50A03DBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Carts
+        // GET: api/ShoppingCarts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cart>>> GetCart()
+        public async Task<ActionResult<IEnumerable<ShoppingCart>>> GetShoppingCart()
         {
-            return await _context.Cart.ToListAsync();
+            return await _context.ShoppingCart.ToListAsync();
         }
 
-        // GET: api/Carts/5
+        // GET: api/ShoppingCarts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cart>> GetCart(int id)
+        public async Task<ActionResult<ShoppingCart>> GetShoppingCart(int id)
         {
-            var cart = await _context.Cart.FindAsync(id);
+            var Shoppingcart = await _context.ShoppingCart.FindAsync(id);
 
-            if (cart == null)
+            if (Shoppingcart == null)
             {
                 return NotFound();
             }
 
-            return cart;
+            return Shoppingcart;
         }
 
-        // PUT: api/Carts/5
+        // PUT: api/ShoppingCarts/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCart(int id, Cart cart)
+        public async Task<IActionResult> PutShoppingCart(int id, ShoppingCart Shoppingcart)
         {
-            if (id != cart.CartId)
+            if (id != Shoppingcart.CartId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(cart).State = EntityState.Modified;
+            _context.Entry(Shoppingcart).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +58,7 @@ namespace vknyazev_C50A03Services.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CartExists(id))
+                if (!ShoppingCartExists(id))
                 {
                     return NotFound();
                 }
@@ -71,35 +71,35 @@ namespace vknyazev_C50A03Services.Controllers
             return NoContent();
         }
 
-        // POST: api/Carts
+        // POST: api/ShoppingCarts
         [HttpPost]
-        public async Task<ActionResult<Cart>> PostCart(Cart cart)
+        public async Task<ActionResult<ShoppingCart>> PostShoppingCart(ShoppingCart Shoppingcart)
         {
-            _context.Cart.Add(cart);
+            _context.ShoppingCart.Add(Shoppingcart);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCart", new { id = cart.CartId }, cart);
+            return CreatedAtAction("GetShoppingCart", new { id = Shoppingcart.CartId }, Shoppingcart);
         }
 
-        // DELETE: api/Carts/5
+        // DELETE: api/ShoppingCarts/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Cart>> DeleteCart(int id)
+        public async Task<ActionResult<ShoppingCart>> DeleteShoppingCart(int id)
         {
-            var cart = await _context.Cart.FindAsync(id);
-            if (cart == null)
+            var Shoppingcart = await _context.ShoppingCart.FindAsync(id);
+            if (Shoppingcart == null)
             {
                 return NotFound();
             }
 
-            _context.Cart.Remove(cart);
+            _context.ShoppingCart.Remove(Shoppingcart);
             await _context.SaveChangesAsync();
 
-            return cart;
+            return Shoppingcart;
         }
 
-        private bool CartExists(int id)
+        private bool ShoppingCartExists(int id)
         {
-            return _context.Cart.Any(e => e.CartId == id);
+            return _context.ShoppingCart.Any(e => e.CartId == id);
         }
     }
 }

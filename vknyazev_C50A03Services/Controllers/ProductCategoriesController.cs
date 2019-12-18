@@ -24,14 +24,14 @@ namespace vknyazev_C50A03Services.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ProductCategory>>> GetProductCategory()
         {
-            return await _context.ProductCategory.Include(p => p.Product).ToListAsync();
+            return await _context.ProductCategory.Include(p => p.Products).ToListAsync();
         }
 
         // GET: api/ProductCategories/5
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductCategory>> GetProductCategory(int id)
         {
-            var productCategory = await _context.ProductCategory.Include(p => p.Product).Where(p => p.CategoryId == id).FirstOrDefaultAsync();
+            var productCategory = await _context.ProductCategory.Include(p => p.Products).Where(p => p.CategoryId == id).FirstOrDefaultAsync();
 
             if (productCategory == null)
             {

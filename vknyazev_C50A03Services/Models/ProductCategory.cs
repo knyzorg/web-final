@@ -11,11 +11,12 @@ namespace vknyazev_C50A03Services.Models
 
         public ProductCategory()
         {
-            Product = new HashSet<Product>();
+            Products = new HashSet<Product>();
         }
 
         [Display(Name = "Category Id")]
         [DataMember(Name = "categoryId")]
+        [Key]
         public int CategoryId { get; set; }
 
 
@@ -24,6 +25,6 @@ namespace vknyazev_C50A03Services.Models
         public string ProdCat { get; set; }
 
         [Display(Name = "Products")]
-        public virtual ICollection<Product> Product { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

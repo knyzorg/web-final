@@ -9,7 +9,7 @@ using vknyazev_C50A03Services.Models;
 
 namespace vknyazev_C50A03Services.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/[controller]")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
@@ -90,6 +90,9 @@ namespace vknyazev_C50A03Services.Controllers
             {
                 return NotFound();
             }
+
+            if (customer.ShoppingCart.CartItems.Count() + customer.Orders.Count() > 0)
+                return BadRequest();
 
             _context.Customer.Remove(customer);
             await _context.SaveChangesAsync();
